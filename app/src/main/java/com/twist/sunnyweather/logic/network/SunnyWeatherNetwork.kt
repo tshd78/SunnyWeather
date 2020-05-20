@@ -17,6 +17,15 @@ import kotlin.coroutines.suspendCoroutine
  */
 object SunnyWeatherNetwork {
 
+    private val weatherService = ServiceCreator.create<WeatherService>()
+
+    suspend fun getDailyWeather(lng: String, lat: String) =
+        weatherService.getDailyWeather(lng, lat).await()
+
+    suspend fun getRealtimeWeather(lng: String, lat: String) =
+        weatherService.getRealtimeWeather(lng, lat).await()
+
+
     // 接口的动态代理对象
     private val placeService = ServiceCreator.create<PlaceService>() // 泛型实化
 
